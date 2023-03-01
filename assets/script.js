@@ -27,6 +27,8 @@ function printProjectData(name, type, hourlyRate, dueDate) {
 
     var dueDateTdEl = $('<td>').addClass('p-2').text(dueDate);
 
+    var daysUntilDue = moment(dueDate, 'MM/DD/YYYY').diff(moment(), 'days');
+
     projectRowEl.append(projectNameTdEl, projectTypeTdEl, rateTdEl, dueDateTdEl);  // Appends the list together
 
     projectDisplayEl.append(projectRowEl);  // Appends the list to the dom

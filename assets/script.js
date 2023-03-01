@@ -9,7 +9,12 @@ var hourlyRateInputEl = $("#hourly-rate-input");
 var dueDateInputEl = $("#due-date-input");
 
 // TODO: function to display the time in the jumbotron and update every second
-function displayTime() {}
+function displayTime() {
+   var rightNow = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+   $("#time-display").text(rightNow);
+}
+
+displayTime();
 
 // TODO: create table elements and update the elements using the function parameters and append all elements to the projectDisplayEl.
 // TODO: also hide the modal during this function call which is done via an event listener after collecting the parameter form data
@@ -34,4 +39,5 @@ function handleProjectFormSubmit(event) {}
 // TODO: create a jQuery UI Datepicker and attach it to the due date form input.
 
 // TODO: create your interval to display the time in the jumbotron and have it fire every second.
+setInterval(displayTime, 1000);
 

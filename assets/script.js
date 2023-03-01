@@ -8,16 +8,14 @@ var projectTypeInputEl = $("#project-type-input");
 var hourlyRateInputEl = $("#hourly-rate-input");
 var dueDateInputEl = $("#due-date-input");
 
-// TODO: function to display the time in the jumbotron and update every second
+// TODO: Write a function to display the time in the jumbotron and update every second
 function displayTime() {
-   var rightNow = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-   $("#time-display").text(rightNow);
+   var thisMoment = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+   $("#time-display").text(thisMoment);  // Or timeDisplayEl.text(thisMoment);
 }
 
-displayTime();
-
-// TODO: create table elements and update the elements using the function parameters and append all elements to the projectDisplayEl.
-// TODO: also hide the modal during this function call which is done via an event listener after collecting the parameter form data
+// TODO: Create table elements and update the elements using the function parameters and append all elements to the projectDisplayEl.
+// TODO: Hide the modal during this function call which is done via an event listener after collecting the parameter form data
 function printProjectData(name, type, hourlyRate, dueDate) {}
 
 // TODO: calculate the daily total by multiplying by 8hrs and figure out the total by multiplying by how many days
@@ -25,7 +23,10 @@ function printProjectData(name, type, hourlyRate, dueDate) {}
 function calculateTotalEarnings(rate, days) {}
 
 // TODO: use event delegation and DOM traversal to find the parent table row to delete when you click on the remove (X) button
-function handleDeleteProject(event) {}
+function handleDeleteProject(event) {
+    event.preventDefault();
+    console.log("Form Submitted");
+}
 
 // handle project form submission
 // TODO: fire this function when you submit the form in the modal (event listener) 
@@ -33,6 +34,7 @@ function handleDeleteProject(event) {}
 function handleProjectFormSubmit(event) {}
 
 // TODO: create an on submit event listener for clicking the form submit in the modal
+projectFormEl.on("submit", handleDeleteProject)
 
 // TODO: create an on click event listener using event delegation to delete a project on the remove (X) button
 

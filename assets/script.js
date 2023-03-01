@@ -23,15 +23,21 @@ function printProjectData(name, type, hourlyRate, dueDate) {}
 function calculateTotalEarnings(rate, days) {}
 
 // TODO: use event delegation and DOM traversal to find the parent table row to delete when you click on the remove (X) button
-function handleDeleteProject(event) {
-    event.preventDefault();
-    console.log("Form Submitted");
-}
+function handleDeleteProject(event) {}
 
-// handle project form submission
+// Handle project form submission
 // TODO: fire this function when you submit the form in the modal (event listener) 
 // TODO: collect the form input values and fire the printProjectData() function and pass the input values as function arguments
-function handleProjectFormSubmit(event) {}
+function handleProjectFormSubmit(event) {
+    event.preventDefault();
+    var projectName = projectNameInputEl.val().trim;
+    var projectType = projectTypeInputEl.val().trim;
+    var hourlyRate = hourlyRateInputEl.val().trim;
+    var dueDate = dueDateInputEl.val().trim;
+
+    printProjectData(projectName, projectType, hourlyRate, dueDate);
+    projectFormEl[0].reset();  // Clears form inputs
+}
 
 // TODO: create an on submit event listener for clicking the form submit in the modal
 projectFormEl.on("submit", handleDeleteProject)

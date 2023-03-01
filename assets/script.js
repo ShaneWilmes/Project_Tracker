@@ -27,9 +27,10 @@ function printProjectData(name, type, hourlyRate, dueDate) {
 
     var dueDateTdEl = $('<td>').addClass('p-2').text(dueDate);
 
-    var daysUntilDue = moment(dueDate, 'MM/DD/YYYY').diff(moment(), 'days');
+    var daysUntilDue = moment(dueDate, 'MM/DD/YYYY').diff(daysUntilDue, 'days');
+    var daysLeft =$('<td>').addClass('p-2').text(daysUntilDue);
 
-    projectRowEl.append(projectNameTdEl, projectTypeTdEl, rateTdEl, dueDateTdEl);  // Appends the list together
+    projectRowEl.append(projectNameTdEl, projectTypeTdEl, rateTdEl, dueDateTdEl, daysLeft);  // Appends the list together
 
     projectDisplayEl.append(projectRowEl);  // Appends the list to the dom
 
@@ -38,7 +39,11 @@ function printProjectData(name, type, hourlyRate, dueDate) {
 
 // TODO: calculate the daily total by multiplying by 8hrs and figure out the total by multiplying by how many days
 // TODO: this function is fired in the printProjectData() function so you can see the total earnings in the table
-function calculateTotalEarnings(rate, days) {}
+function calculateTotalEarnings(rate, days) {
+    var dailyTotal = rate * 8;
+    var total = dailyTotal * days;
+    return total;
+}
 
 // TODO: use event delegation and DOM traversal to find the parent table row to delete when you click on the remove (X) button
 function handleDeleteProject(event) {}

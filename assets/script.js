@@ -16,7 +16,23 @@ function displayTime() {
 
 // TODO: Create table elements and update the elements using the function parameters and append all elements to the projectDisplayEl.
 // TODO: Hide the modal during this function call which is done via an event listener after collecting the parameter form data
-function printProjectData(name, type, hourlyRate, dueDate) {}
+function printProjectData(name, type, hourlyRate, dueDate) {
+    var projectRowEl = $('<tr>');
+
+    var projectNameTdEl = $('<td>').addClass('p-2').text(name);
+
+    var projectTypeTdEl = $('<td>').addClass('p-2').text(type);
+
+    var rateTdEl = $('<td>').addClass('p-2').text(hourlyRate);
+
+    var dueDateTdEl = $('<td>').addClass('p-2').text(dueDate);
+
+    projectRowEl.append(projectNameTdEl, projectTypeTdEl, rateTdEl, dueDateTdEl);  // Appends the list together
+
+    projectDisplayEl.append(projectRowEl);  // Appends the list to the dom
+
+    projectModalEl.modal('hide');
+}
 
 // TODO: calculate the daily total by multiplying by 8hrs and figure out the total by multiplying by how many days
 // TODO: this function is fired in the printProjectData() function so you can see the total earnings in the table
@@ -30,17 +46,18 @@ function handleDeleteProject(event) {}
 // TODO: collect the form input values and fire the printProjectData() function and pass the input values as function arguments
 function handleProjectFormSubmit(event) {
     event.preventDefault();
-    var projectName = projectNameInputEl.val().trim;
-    var projectType = projectTypeInputEl.val().trim;
-    var hourlyRate = hourlyRateInputEl.val().trim;
-    var dueDate = dueDateInputEl.val().trim;
+
+    var projectName = projectNameInputEl.val().trim();
+    var projectType = projectTypeInputEl.val().trim();
+    var hourlyRate = hourlyRateInputEl.val().trim();
+    var dueDate = dueDateInputEl.val().trim();
 
     printProjectData(projectName, projectType, hourlyRate, dueDate);
     projectFormEl[0].reset();  // Clears form inputs
 }
 
 // TODO: create an on submit event listener for clicking the form submit in the modal
-projectFormEl.on("submit", handleDeleteProject)
+projectFormEl.on("submit", handleProjectFormSubmit)
 
 // TODO: create an on click event listener using event delegation to delete a project on the remove (X) button
 

@@ -9,4 +9,4 @@
 -Google Fonts
 
 ### Location
--[Project Tracker](https://shanewilmes.github.io/Project_Tracker/){:target="_blank" rel="noopener"}
+-[Project Tracker](https://shanewilmes.github.io/Project_Tracker/)

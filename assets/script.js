@@ -28,9 +28,14 @@ function printProjectData(name, type, hourlyRate, dueDate) {
     var dueDateTdEl = $('<td>').addClass('p-2').text(dueDate);
 
     var daysUntilDue = moment(dueDate, 'MM/DD/YYYY').diff(daysUntilDue, 'days');
+
     var daysLeft =$('<td>').addClass('p-2').text(daysUntilDue);
 
-    projectRowEl.append(projectNameTdEl, projectTypeTdEl, rateTdEl, dueDateTdEl, daysLeft);  // Appends the list together
+    var totalEarnings = calculateTotalEarnings(hourlyRate, daysUntilDue);
+    
+    var totalTdEl = $('<td>').addClass('p-2').text("$" + totalEarnings);
+
+    projectRowEl.append(projectNameTdEl, projectTypeTdEl, rateTdEl, dueDateTdEl, daysLeft, totalTdEl);  // Appends the list together
 
     projectDisplayEl.append(projectRowEl);  // Appends the list to the dom
 
@@ -42,7 +47,9 @@ function printProjectData(name, type, hourlyRate, dueDate) {
 function calculateTotalEarnings(rate, days) {
     var dailyTotal = rate * 8;
     var total = dailyTotal * days;
-    return total;
+    var totalFor = Intl.NumberFormat('en-US')
+    var newTotal = totalFor.format(total);
+    return newTotal;
 }
 
 // TODO: use event delegation and DOM traversal to find the parent table row to delete when you click on the remove (X) button
@@ -67,6 +74,7 @@ function handleProjectFormSubmit(event) {
 projectFormEl.on("submit", handleProjectFormSubmit)
 
 // TODO: create an on click event listener using event delegation to delete a project on the remove (X) button
+
 
 // TODO: create a jQuery UI Datepicker and attach it to the due date form input.
 

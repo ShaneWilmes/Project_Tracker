@@ -82,6 +82,7 @@ function handleProjectFormSubmit(event) {
 projectFormEl.on("submit", handleProjectFormSubmit)
 
 // TODO: create an on click event listener using event delegation to delete a project on the remove (X) button
+// .delete-project-btn for new class from line 38.  Won't work with out the .
 projectDisplayEl.on("click", '.delete-project-btn', handleDeleteProject)
 
 // TODO: create a jQuery UI Datepicker and attach it to the due date form input.

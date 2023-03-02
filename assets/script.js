@@ -35,7 +35,9 @@ function printProjectData(name, type, hourlyRate, dueDate) {
     
     var totalTdEl = $('<td>').addClass('p-2').text("$" + totalEarnings);
 
-    projectRowEl.append(projectNameTdEl, projectTypeTdEl, rateTdEl, dueDateTdEl, daysLeft, totalTdEl);  // Appends the list together
+    var deleteProjectBtn = $('<td>').addClass('p-2 delete-project-btn text center').text('X');
+
+    projectRowEl.append(projectNameTdEl, projectTypeTdEl, rateTdEl, dueDateTdEl, daysLeft, totalTdEl, deleteProjectBtn);  // Appends the list together
 
     projectDisplayEl.append(projectRowEl);  // Appends the list to the dom
 
@@ -44,6 +46,7 @@ function printProjectData(name, type, hourlyRate, dueDate) {
 
 // TODO: calculate the daily total by multiplying by 8hrs and figure out the total by multiplying by how many days
 // TODO: this function is fired in the printProjectData() function so you can see the total earnings in the table
+// Used .format to format value to US currency
 function calculateTotalEarnings(rate, days) {
     var dailyTotal = rate * 8;
     var total = dailyTotal * days;
@@ -53,7 +56,12 @@ function calculateTotalEarnings(rate, days) {
 }
 
 // TODO: use event delegation and DOM traversal to find the parent table row to delete when you click on the remove (X) button
-function handleDeleteProject(event) {}
+function handleDeleteProject(event) {
+    event.preventDefault();
+    console.log(event.target);
+    var btnClicked =$(event.target);
+    btnClicked.parent('tr').remove();  
+}
 
 // Handle project form submission
 // TODO: fire this function when you submit the form in the modal (event listener) 
@@ -74,9 +82,11 @@ function handleProjectFormSubmit(event) {
 projectFormEl.on("submit", handleProjectFormSubmit)
 
 // TODO: create an on click event listener using event delegation to delete a project on the remove (X) button
-
+projectDisplayEl.on("click", '.delete-project-btn', handleDeleteProject)
 
 // TODO: create a jQuery UI Datepicker and attach it to the due date form input.
+// Used minDate to eliminate past dates and only allow for projects to be due in 1 day
+dueDateInputEl.datepicker({ minDate: 1});
 
 // TODO: create your interval to display the time in the jumbotron and have it fire every second.
 setInterval(displayTime, 1000);
